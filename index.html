@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحديد استحقاق دعم صندوق التكافل الأجتماعى</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>تحديد استحقاق دعم صندوق التكافل الأجتماعى</h1>
+        <form id="supportForm">
+            <label>الاسم: <input type="text" id="name" required></label>
+            <label>التليفون: <input type="tel" id="phone" required></label>
+            <label>الرقم القومي: <input type="text" id="nationalID" required></label>
+            <label>الحيازة الزراعية (فدان): <input type="number" id="land" min="0"></label>
+            <label>عدد أفراد الأسرة: <input type="number" id="familyMembers" min="1" required></label>
+            <label>دخل الأسرة (جنيه): <input type="number" id="familyIncome" min="0" required></label>
+            <label>الحد الأدنى لنصيب الفرد: <input type="number" id="minIncome" min="0" required></label>
+            <button type="button" onclick="addRecord()">إضافة وحساب</button>
+        </form>
+
+        <div id="result"></div>
+        
+      <div class="year-buttons">
+    <button onclick="setYear('firstYear')">الفرقة الأولى</button>
+    <button onclick="setYear('secondYear')">الفرقة الثانية</button>
+    <button onclick="setYear('thirdYear')">الفرقة الثالثة</button>
+    <button onclick="setYear('fourthYear')">الفرقة الرابعة</button>
+    <button onclick="setYear('fifthYear')">الفرقة الخامسة</button>
+</div>
+
+        <h2>قائمة الأفراد</h2>
+        <button onclick="toggleDropdown()">إخفاء/إظهار القائمة</button>
+        <input type="text" id="search" placeholder="ابحث عن اسم..." oninput="filterRecords()">
+        <select id="recordsDropdown" size="5" onchange="showRecord()"></select>
+        
+        <h2>جدول البيانات المدخلة</h2>
+        <button onclick="toggleTable()">إخفاء/إظهار الجدول</button>
+        <table id="dataTable" border="1">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>التليفون</th>
+                    <th>الرقم القومي</th>
+                    <th>الحيازة الزراعية</th>
+                    <th>عدد أفراد الأسرة</th>
+                    <th>دخل الأسرة</th>
+                    <th>نصيب الفرد</th>
+                    <th>الحد الأدنى</th>
+                    <th>الاستحقاق</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button onclick="exportToExcel()">تصدير إلى Excel</button>
+     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+        <button onclick="exportToJSON()">تصدير إلى JSON</button>
+        <input type="file" id="importJSON" accept=".json" onchange="importFromJSON()">
+        <button onclick="clearAllData()">مسح كل البيانات</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

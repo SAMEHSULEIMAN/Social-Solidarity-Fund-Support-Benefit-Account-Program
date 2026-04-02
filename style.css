@@ -1,0 +1,240 @@
+﻿body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f9ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    direction: rtl;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+input, button, select {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: right;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#result {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e7f3fe;
+    color: #0056b3;
+    text-align: center;
+    font-weight: bold;
+}
+
+#recordsDropdown, #dataTable {
+    width: 100%;
+    margin-top: 10px;
+    text-align: right;
+}
+
+#search {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+#dataTable {
+    border-collapse: collapse;
+    display: none; /* افتراضيًا مخفي */
+}
+
+#dataTable th, #dataTable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+#dataTable th {
+    background-color: #007bff;
+    color: white;
+}
+
+.toggle-button {
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.toggle-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.year-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.year-buttons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.year-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* تأثير الظهور التدريجي للجدول والقائمة */
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* إضافة تأثير عند عرض رسائل النجاح أو الخطأ */
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-show {
+    display: block;
+    opacity: 1;
+}
+
+/* تأثير ظهور الأزرار */
+button, input, select {
+    transition: all 0.3s ease;
+}
+
+/* الألوان الخاصة بكل سنة دراسية */
+.year-1 {
+    --primary-color: #e3f2fd;
+    --secondary-color: #bbdefb;
+    --text-color: #0d47a1;
+}
+
+.year-2 {
+    --primary-color: #e8f5e9;
+    --secondary-color: #c8e6c9;
+    --text-color: #1b5e20;
+}
+
+.year-3 {
+    --primary-color: #fff3e0;
+    --secondary-color: #ffe0b2;
+    --text-color: #e65100;
+}
+
+.year-4 {
+    --primary-color: #fbe9e7;
+    --secondary-color: #ffccbc;
+    --text-color: #bf360c;
+}
+
+.year-5 {
+    --primary-color: #ede7f6;
+    --secondary-color: #d1c4e9;
+    --text-color: #4a148c;
+}
+
+/* تطبيق الألوان الديناميكية */
+.container {
+    background-color: var(--primary-color);
+    transition: background-color 0.3s ease;
+}
+
+#dataTable th {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+
+button:hover {
+    background-color: var(--text-color);
+    color: white;
+}
