@@ -1,8 +1,15 @@
-﻿body {
+/* ========== التصميم الأساسي ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f9ff;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,18 +23,25 @@
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 800px;
+    max-width: 1400px;
+    transition: background-color 0.3s ease;
 }
 
 h1, h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 15px;
 }
 
+/* نموذج الإدخال */
 form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
@@ -49,6 +63,7 @@ input, button, select {
     border-radius: 5px;
     font-size: 14px;
     text-align: right;
+    transition: all 0.3s ease;
 }
 
 button {
@@ -61,7 +76,27 @@ button {
 
 button:hover {
     background-color: #0056b3;
-    transform: scale(1.05);
+    transform: scale(1.02);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #b02a37;
+}
+.btn-success {
+    background-color: #28a745;
+}
+.btn-success:hover {
+    background-color: #1e7e34;
+}
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+.btn-warning:hover {
+    background-color: #e0a800;
 }
 
 #result {
@@ -74,6 +109,7 @@ button:hover {
     font-weight: bold;
 }
 
+/* القائمة المنسدلة والجدول */
 #recordsDropdown, #dataTable {
     width: 100%;
     margin-top: 10px;
@@ -88,7 +124,8 @@ button:hover {
 
 #dataTable {
     border-collapse: collapse;
-    display: none; /* افتراضيًا مخفي */
+    display: block;
+    overflow-x: auto;
 }
 
 #dataTable th, #dataTable td {
@@ -102,25 +139,12 @@ button:hover {
     color: white;
 }
 
-.toggle-button {
-    margin: 10px 0;
-    padding: 10px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.toggle-button:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-}
-
+/* أزرار السنوات */
 .year-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-bottom: 20px;
 }
 
@@ -140,7 +164,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* تأثير الظهور التدريجي للجدول والقائمة */
+/* تأثير الظهور والاختفاء */
 .hidden {
     display: none;
     opacity: 0;
@@ -152,7 +176,7 @@ button:hover {
     opacity: 1;
 }
 
-/* إضافة تأثير عند عرض رسائل النجاح أو الخطأ */
+/* رسائل التنبيه */
 .alert {
     padding: 10px;
     border-radius: 5px;
@@ -181,60 +205,107 @@ button:hover {
     opacity: 1;
 }
 
-/* تأثير ظهور الأزرار */
-button, input, select {
-    transition: all 0.3s ease;
-}
-
-/* الألوان الخاصة بكل سنة دراسية */
+/* الألوان الخاصة بكل سنة دراسية (ديناميكية) */
 .year-1 {
     --primary-color: #e3f2fd;
     --secondary-color: #bbdefb;
     --text-color: #0d47a1;
 }
-
 .year-2 {
     --primary-color: #e8f5e9;
     --secondary-color: #c8e6c9;
     --text-color: #1b5e20;
 }
-
 .year-3 {
     --primary-color: #fff3e0;
     --secondary-color: #ffe0b2;
     --text-color: #e65100;
 }
-
 .year-4 {
     --primary-color: #fbe9e7;
     --secondary-color: #ffccbc;
     --text-color: #bf360c;
 }
-
 .year-5 {
     --primary-color: #ede7f6;
     --secondary-color: #d1c4e9;
     --text-color: #4a148c;
 }
 
-/* تطبيق الألوان الديناميكية */
+/* تطبيق الألوان الديناميكية على الحاوية والجدول والأزرار */
 .container {
-    background-color: var(--primary-color);
-    transition: background-color 0.3s ease;
+    background-color: var(--primary-color, #ffffff);
 }
-
 #dataTable th {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    background-color: var(--secondary-color, #007bff);
+    color: var(--text-color, white);
 }
-
-button {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    border: 1px solid var(--text-color);
+.year-buttons button {
+    background-color: var(--secondary-color, #007bff);
+    color: var(--text-color, white);
+    border: 1px solid var(--text-color, #0056b3);
 }
-
-button:hover {
-    background-color: var(--text-color);
+button:not(.btn-danger):not(.btn-success):not(.btn-warning) {
+    background-color: var(--secondary-color, #007bff);
+    color: var(--text-color, white);
+}
+button:not(.btn-danger):not(.btn-success):not(.btn-warning):hover {
+    background-color: var(--text-color, #0056b3);
     color: white;
+}
+
+/* تحسينات إضافية للواجهة */
+.stats {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.6);
+    padding: 15px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px 15px;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-weight: bold;
+}
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+.search-box {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+.search-box input {
+    flex: 2;
+}
+.eligible-row {
+    background-color: #d4edda !important;
+}
+.not-eligible-row {
+    background-color: #f8d7da !important;
+}
+.action-buttons button {
+    margin: 2px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    th, td {
+        font-size: 12px;
+        padding: 6px;
+    }
 }
